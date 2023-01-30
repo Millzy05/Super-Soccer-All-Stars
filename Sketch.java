@@ -53,7 +53,15 @@ public class Sketch extends PApplet {
 
 
   //int teams
+  int [] playerColour = new int[3];
+  int [] comColour = new int[3];
+
+  int barca1 = 227;
   
+  int barca2 = 36;
+  int barca3 = 43;
+  int[] barca = new int[]{barca1,barca2,barca3};
+  Team fcb = new Team("Barcelona",barca);
   
   //screen int
   boolean titleScreen = true;
@@ -567,7 +575,7 @@ public class Sketch extends PApplet {
       
 
 //drwing the stuff onto the screen
-      playerColour = [0,0,0];
+      playerColour = fcb.getColour();
       
       
       fill(playerColour[0],playerColour[1],playerColour[2]);
@@ -586,7 +594,8 @@ public class Sketch extends PApplet {
 
       
       //draw the computer
-      comColour = [255,0,255];
+      comColour = fcb.getColour();
+      
       fill(comColour[0],comColour[1],comColour[2]);
       //player1
       rect(com1X, com1Y,30,60);
