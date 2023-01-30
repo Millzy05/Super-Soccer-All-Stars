@@ -619,14 +619,7 @@ public class Sketch extends PApplet {
     }else if(gameOverScreen){
       
         image(loadImage("TITLESCREEN.jpg"),0,0);
-      image(loadImage("BACKBUTTON.png"),15,470);
-      if(mousePressed){
-        //inside back area
-        if(mouseX>backX && mouseX<backX+backW && mouseY>backY && mouseY<backY+backH){
-          controlScreen = false;
-  titleScreen = true;
-          
-        }
+      
       }
       if(scorePlayer == 3){
         fill(0,0,0);
