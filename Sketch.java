@@ -50,41 +50,16 @@ public class Sketch extends PApplet {
   boolean[] playerWithBall;
   //direction of kick
   boolean[] directionOfKick;
-  boolean[]comTeam;
-  boolean[]playerTeam;
+
 
   //int teams
-  //colours
-  int [] playerColour = new int[3];
-  int [] comColour = new int[3];
-
-  int city1 = 10;
-  int city2 = 186;
-  int city3 = 181;
   
-  int [] city = new int []{city1,city2,city3};
-
-  int barca1 = 227;
-  
-  int barca2 = 36;
-  int barca3 = 43;
-  int[] barca = new int[]{barca1,barca2,barca3};
-
-  
-  int paris1 = 0;
-  int paris2 = 0;
-  int paris3 = 150;
-  int[] paris = new int []{paris1,paris2,paris3};
-
-  Team mci = new Team("Man. City",city);
-  Team fcb = new Team("Barcelona",barca);
-  Team psg = new Team("Paris SG",paris);
   
   //screen int
   boolean titleScreen = true;
 
   boolean gameScreen = false;
-  boolean teamSelectScreen = false;
+ 
   boolean gameOverScreen = false;
   boolean controlScreen = false;
   
@@ -93,8 +68,7 @@ public class Sketch extends PApplet {
   public void settings() {
     playerWithBall = new boolean[5];
     directionOfKick= new boolean[4];
-    playerTeam = new boolean[3];
-    comTeam = new boolean[3];
+    
     keys = new boolean[12];
     keys[0] = false;
     keys[1] = false;
@@ -117,12 +91,7 @@ public class Sketch extends PApplet {
     directionOfKick[1] = false;
     directionOfKick[2] = false;
     directionOfKick[3] = false;
-    playerTeam[0] = true;
-    playerTeam[1] = false;
-    playerTeam[2] = false;
-    comTeam[0] = true;
-    comTeam[1] = false;
-    comTeam[2] = false;
+    
     size(WIDTH , HEIGHT);
   }
   public void keyPressed(){
@@ -244,7 +213,7 @@ public class Sketch extends PApplet {
              com2Y = 500;
           titleScreen = false;
       
-          teamSelectScreen =true;
+          gameScreen =true;
           
         }
         //inside controls area
@@ -258,116 +227,7 @@ public class Sketch extends PApplet {
 
 
 
-//team select screen
-    }else if(teamSelectScreen){
-      background(185,185,185);
-      //top box
-      fill(255,255,255);
-      rect(200,25,200,100);
-      rect(600,25,200,100);
-      //top text
-      fill(0,0,0);
-      textSize(60);
-      textAlign(CENTER);
-      text("HOME", 300 , 100);
-      text("AWAY", 700 , 100);
-      
-      //middle box
-      fill(255,255,255);
-      rect(200,150,200,200);
-      rect(600,150,200,200);
-      if(mousePressed){
-        
-        if(mouseX>200 && mouseX<400&& mouseY>150&& mouseY<350){
-          
-          if(playerTeam[0]==true){
-            
-            playerTeam[0] = false;
-            playerTeam[1]= true;
-          }
-          else if(playerTeam[1]==true){
-            playerTeam[1] = false;
-            playerTeam[2]= true;
-          }
-          else if(playerTeam[2]==true){
-            playerTeam[2] = false;
-            playerTeam[0]= true;
-          }
-         
-          
-        }
-        if(mouseX>600 && mouseX<800&& mouseY>150&& mouseY<350){
-          if(comTeam[0]==true){
-            comTeam[0] = false;
-            comTeam[1]= true;
-          }
-          else if(comTeam[1]==true){
-            comTeam[1] = false;
-            comTeam[2]= true;
-          }
-          else if(comTeam[2]==true){
-            comTeam[2] = false;
-            comTeam[0]= true;
-          }
-         
-          
-        }
-      }
-      //image of team
-      if(playerTeam[0] == true){
-        image(loadImage("FCB.png"),200,150);
-        fill(0,0,0);
-        text(fcb.getName(), 300 , 425);
-      }
-      if(playerTeam[1] == true){
-        image(loadImage("MCI.png"),200,150);
-        fill(0,0,0);
-        text(mci.getName(),300,425);
-      }
-      if(playerTeam[2] == true){
-        image(loadImage("PSG.png"),200,150);
-        fill(0,0,0);
-        text(psg.getName(),300,425);
-      }
-      
-      if(comTeam [0] == true){
-        image(loadImage("FCB.png"),600,150);
-        fill(0,0,0);
-        text(fcb.getName(), 700 , 425);
-      }
-      if(comTeam[1] == true){
-        image(loadImage("MCI.png"),600,150);
-        fill(0,0,0);
-        text(mci.getName(),700,425);
-      }
-      if(comTeam[2] == true){
-        image(loadImage("PSG.png"),600,150);
-        fill(0,0,0);
-        text(psg.getName(),700,425);
-      }
-      
 
-     //bottom text
-      
-      
-      
-      
-      fill(255,255,255);
-      rect(400,450,200,100);
-      fill(0,0,0);
-      textSize(60);
-      textAlign(CENTER);
-      text("START", 500 , 525);
-
-      //test for start
-      if(mousePressed){
-        if(mouseX>400 && mouseX<600 && mouseY>450 && mouseY<550){
-          gameScreen = true;
-          teamSelectScreen = false;
-         
-          
-        }
-      }
 
       //gamescreen
     }else if(gameScreen){
@@ -707,15 +567,7 @@ public class Sketch extends PApplet {
       
 
 //drwing the stuff onto the screen
-      if(playerTeam[0] == true){
-        playerColour = fcb.getColour();
-      }
-      if(playerTeam[1] == true){
-        playerColour = mci.getColour();
-      }
-      if(playerTeam[2] == true){
-        playerColour = psg.getColour();
-      }
+      playerColour = [0,0,0];
       
       
       fill(playerColour[0],playerColour[1],playerColour[2]);
@@ -734,15 +586,7 @@ public class Sketch extends PApplet {
 
       
       //draw the computer
-      if(comTeam[0] == true){
-        comColour = fcb.getColour();
-      }
-      if(comTeam[1] == true){
-        comColour = mci.getColour();
-      }
-      if(comTeam[2] == true){
-        comColour = psg.getColour();
-      };
+      comColour = [255,0,255];
       fill(comColour[0],comColour[1],comColour[2]);
       //player1
       rect(com1X, com1Y,30,60);
